@@ -5,24 +5,122 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Login Form</title>
         <style>
+            *{
+                margin:0;
+                padding:0;
+                box-sizing:border-box;
+            }
+            body{
+                background:#fbf3ff;
+            }
+            .container{
+                position:absolute;
+                max-width:880px;
+                height:500px;
+                margin:auto;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+            }
+            .myRightCtn{
+                position:relative;
+                background-image:linear-gradient(45deg,#f046ff,#9b00e8);
+                border-radius:25px;
+                height:100%;
+                padding:25px;
+                color:rgb 192,192,192;
+                font-size:12px;
+                display:flex;
+                justify-content:center;
+                align-items;
+            }
+            .myLeftCtn{
+                position:relative;
+                background:#fff;
+                border-radius:25px;
+                height:100%;
+                padding:25px;
+                padding-left: 50px;
+            }
+            .myLeftCtn header{
+                color:blueviolet;
+                font-size:24px;
+                font-weight:700;
+                margin-bottom:20px;
+            }
+            .row{
+                height:100%;
+            }
+            .myCard{
+                position:relative;
+                background:#fff;
+                height:100%;
+                border-radius:25px;
+                -webkit-box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+                -moz-box-shadow:0px 10px 40px -10px rgba(0,0,0,0.7);
+                box-shadow;0px 10px 40px -10px rgba(0,0,0,0.7);
+            }
+            .myRightCtn header{
+                color: #fff;
+                font-size:44px;
+            }
+            .box{
+                position:relative;
+                margin:20px;
+                margin-bottom:100px;
+            }
+            .myForm{
+                position:relative;
+                margin-top:50px;
+            }
+
+            h1 {
+                text-align: center;
+                color:blue;
+            }
             .er{
                 color:red;
             }
         </style>
     </head>
     <body>
-        <form action="" method="post" novalidate>
-            {% csrf_token %}
-            {% if form.non_field_errors%}
-               {%for error in form.non_field_errors %}
-                  <p class="er">{{error}}</p>
-               {%endfor%}
-            {%endif%}
-            {% for fm in form %}
-             {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
-            {% endfor %}
-            <input type="submit" value ="Login">
-        </form>
-         <a href="{% url 'signup' %}">Signup</a>
+        <div class ="py-3">
+            <h1 class="text-center"><b>Salesperson Login</b></h1>
+        </div>
+        <div class="container">
+            <div class="myCard">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="myLeftCtn">
+                            <div class="box"><header> Welcome to your Dashboard</header>
+                                <h3>This is the homepage of lead Management system login now to begin</h3>
+                                <img src="https://media.istockphoto.com/vectors/woman-programmer-is-sitting-at-a-desk-education-and-work-in-the-vector-id1221832882?k=20&m=1221832882&s=612x612&w=0&h=ENSHACq1GmCy94YrD1sOkHc7MPiq4AfTui4LEZ7uS9Q=" class="card-img-bottom" alt="..." height=80% width=60%> 
+                            </div>                      
+                        </div>
+                <div class="col-md-6">
+                    <div class="myRightCtn">
+                        <div class="box"><header>Sales Staff Login Page</header>
+                            <br>
+                            <form action="" method="post" novalidate>
+                                {% csrf_token %}
+                                {% if form.non_field_errors%}
+                                {%for error in form.non_field_errors %}
+                                    <p class="er">{{error}}</p>
+                                {%endfor%}
+                                {%endif%}
+                                {% for fm in form %}
+                                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+                                {% endfor %}
+                                
+                                <input type="submit" value ="Login">
+                            </form>
+                            <a href="{% url 'signup' %}">Signup</a>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+        
     </body>
 </html>
