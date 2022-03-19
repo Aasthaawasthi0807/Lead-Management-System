@@ -27,5 +27,5 @@ urlpatterns = [
     path('changepass/', views.user_change_pass,name='changepass'),
     path('addandshow/',views.add_show, name="addandshow"),
     path('delete/<int:id>/',views.delete_data, name="deletedata"),
-
+    path('<int:id>/',views.update_data, name="updatedata"),
 ]

@@ -1,5 +1,6 @@
 {% extends 'authentication/base.html' %}
 {% block content %}
+
 <div class="row">
     <div class="col-sm-4">
         <h4 class="text-center alert alert-info"> Add New Lead</h4>
@@ -10,7 +11,7 @@
         </form>
     </div>
 
-
+     
     <div class="col-sm-7 offset-1">
         <h4 class ="text-center alert alert-info"> Show Lead Information</h4>
         {% if ld %}
@@ -34,7 +35,7 @@
                 <td>{{l.status}}</td>
                 <td>{{l.assigned_to}}</td>
                 <td>
-                  <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                  <a href="{% url 'updatedata' l.id %}" class="btn btn-warning btn-sm">Edit</a>
                   <form action="{% url 'deletedata' l.id %}" method="post" class="d-inline">
                     {% csrf_token %}
                     <input type="submit" class ="btn btn-danger" value="Delete">

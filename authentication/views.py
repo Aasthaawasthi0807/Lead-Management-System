@@ -83,6 +83,7 @@ def add_show(request):
                 em = fm.cleaned_data['email']
                 am = fm.cleaned_data['assigned_to']
                 sm = fm.cleaned_data['status']
+                
                 reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm)
                 reg.save()
                 fm = LeadRegistration()
@@ -104,3 +105,16 @@ def delete_data(request , id):
         pi = Lead.objects.get(pk=id)
         pi.delete()
         return HttpResponseRedirect('/addandshow/')
+
+
+#This Function will Update or Edit
+def update_data(request, id):
+    if request.method == 'POST':
+        pi = Lead.objects.get(pk=id)
+        fm = LeadRegistration(request.POST, instance=pi)
+        if fm.is_valid():
+            fm.save()
+    else:
+        pi = Lead.objects.get(pk=id)
+        fm = LeadRegistration(instance=pi)
+    return render(request, 'authentication/updatelead.html' , {'form':fm})

@@ -20,4 +20,5 @@ class LeadRegistration(forms.ModelForm):
             'first_name':forms.TextInput(attrs={'class':'form-control'}),
             'email':forms.EmailInput(attrs={'class':'form-control'}),
             'assigned_to':forms.TextInput(attrs={'class':'form-control'}),
+            
         }
