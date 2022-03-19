@@ -22,7 +22,10 @@ urlpatterns = [
     path('',views.home),
     path('signup/', views.sign_up,name='signup'),
     path('login/', views.user_login,name='login'),
-    path('base/', views.user_profile,name='base'),
+    #path('base/', views.user_profile,name='base'),
     path('logout/', views.user_logout,name='logout'),
     path('changepass/', views.user_change_pass,name='changepass'),
+    path('addandshow/',views.add_show, name="addandshow"),
+    path('delete/<int:id>/',views.delete_data, name="deletedata"),
+
 ]

@@ -3,7 +3,8 @@ from .forms import SignUpForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm , PasswordChangeForm
 from django.contrib.auth import authenticate, login,logout,update_session_auth_hash
-
+from .forms import LeadRegistration
+from .models import Lead
 
 #Home view Function
 def home(request):
@@ -32,19 +33,14 @@ def user_login(request):
                 if user is not None:
                     login(request,user)
                     messages.success(request,'Logged in Succesfully !!')
-                    return HttpResponseRedirect('/base/')
+                    return HttpResponseRedirect('/addandshow/')
         else:
             fm = AuthenticationForm()
         return render(request,"login.html",{'form':fm})
     else:
-        return HttpResponseRedirect('/base/') 
+        return HttpResponseRedirect('/addandshow/') 
 
-#Base
-def user_profile(request):
-    if request.user.is_authenticated:
-      return render(request , 'authentication/base.html' ,{'name':request.user})
-    else:
-        return HttpResponseRedirect('/login/')
+
 
 #Logout View Function
 def user_logout(request):
@@ -60,9 +56,51 @@ def user_change_pass(request):
                 fm.save()
                 update_session_auth_hash(request ,fm.user )
                 messages.success(request, 'Password Changed Successfully!!')
-                return HttpResponseRedirect('/base/')
+                return HttpResponseRedirect('/addandshow/')
         else:   
             fm =PasswordChangeForm(user=request.user)
         return render(request,'authentication/changepass.html' , {'form':fm})
     else:
         return HttpResponseRedirect('/error/')
+
+
+
+"""
+#Base
+def user_profile(request):
+    if request.user.is_authenticated:
+      return render(request , 'authentication/base.html' ,{'name':request.user})
+    else:
+        return HttpResponseRedirect('/login/')"""
+
+#This function will Add new Lead and Show all leads
+def add_show(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            fm = LeadRegistration(request.POST)
+            if fm.is_valid():
+                nm = fm.cleaned_data['first_name']
+                em = fm.cleaned_data['email']
+                am = fm.cleaned_data['assigned_to']
+                sm = fm.cleaned_data['status']
+                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm)
+                reg.save()
+                fm = LeadRegistration()
+        else:
+            fm = LeadRegistration()
+        led = Lead.objects.all()
+            
+
+
+        return render(request, 'authentication/addandshow.html',{'form':fm ,'ld':led , 'name':request.user})
+    else:
+        return HttpResponseRedirect('/login/')
+
+
+
+#This function will delete Leads
+def delete_data(request , id):
+    if request.method == 'POST':
+        pi = Lead.objects.get(pk=id)
+        pi.delete()
+        return HttpResponseRedirect('/addandshow/')

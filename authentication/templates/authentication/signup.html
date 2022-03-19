@@ -59,7 +59,7 @@
                                   <div style="width: 22rem;">
                                     <img src="https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/4b932533-f39d-4037-a4eb-6ace79f652e3.png" class="logo" width="30%" height="15%">
                                         <br>
-                                        <h2 class="card-title" style="color:purple">  Welcome to your Dashboard</h2>
+                                        <h2  style="color:purple" class="text-center alert alert-info">  Welcome to your Dashboard</h2>
                                         <br> 
                                         <h4 class="card-text"> This is the homepage of lead Management system Register now to begin</h4>
                                         <br>
@@ -75,10 +75,12 @@
                     <br>
                     <br>
                     <br>
+                
                     
                     <div class="form-row">
-                        <h5 style="color:purple">Register Sales Representative</h5>
-                            <br>
+                      
+                        <h5 style="color:purple" class="text-center alert alert-info">Register Sales Representative</h5>
+                          <br>
                             <form action="" method="post" novalidate>
                                 {% csrf_token %}
                                 {% if form.non_field_errors%}
@@ -91,13 +93,15 @@
                                 {% endfor %}
                                 <input type="submit" value="Submit">
                             </form>
+                          
                         {% if messages %}
                          {% for message in messages %}
                            <small {% if message.tags %} class = "{{message.tags}}" {% endif %}> {{message}} </small>
                          {% endfor%}
                          {% endif%}
                          <a href="{%url 'login'%}">Already have an account? Login</a>
-                        </div>
+                          
+                      </div>
                     </div>
                 </div>
             </div>
