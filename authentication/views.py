@@ -122,5 +122,20 @@ def update_data(request, id):
 
 #Lead login function
 def lead_login(request):
-    fm = AuthenticationForm()
+    if request.method == "POST":
+        fm = AuthenticationForm(request=request,data=request.POST)
+        if fm.is_valid():
+            fname = fm.cleaned_data['username']
+            lpass = fm.cleaned_data['password']
+            lead = authenticate(username=fname,password=lpass)
+            if lead is not None:
+                login(request,lead)
+                return HttpResponseRedirect('/profile/')
+    else:  
+        fm = AuthenticationForm()
     return render(request,'authentication/login1.html',{'form':fm})
+
+
+#Profile
+def lead_profile(request):
+    return render(request , 'authentication/profile.html')

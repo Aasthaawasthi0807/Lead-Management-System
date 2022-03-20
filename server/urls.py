@@ -30,4 +30,5 @@ urlpatterns = [
     path('delete/<int:id>/',views.delete_data, name="deletedata"),
     path('<int:id>/',views.update_data, name="updatedata"),
     path('login1/', views.lead_login,name='login1'),
+    path('profile/', views.lead_profile,name='profile'),
 ]
