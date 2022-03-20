@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication import views
+admin.site.site_header = "Leads Management Platform"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('addandshow/',views.add_show, name="addandshow"),
     path('delete/<int:id>/',views.delete_data, name="deletedata"),
     path('<int:id>/',views.update_data, name="updatedata"),
+    path('login1/', views.lead_login,name='login1'),
 ]

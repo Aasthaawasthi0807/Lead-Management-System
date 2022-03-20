@@ -18,4 +18,5 @@ class Lead(models.Model):
     phone_number = models.CharField( max_length=17, blank=True) 
     status = models.CharField(max_length=100, choices=STATUS_CHOICES,default=False)
     assigned_to = models.CharField(max_length=30,default='')
+    password =  models.CharField(max_length=20, default='')
     

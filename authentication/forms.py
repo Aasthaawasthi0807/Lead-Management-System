@@ -15,10 +15,10 @@ class SignUpForm(UserCreationForm):
 class LeadRegistration(forms.ModelForm):
     class Meta:
         model = Lead
-        fields = ['first_name','email','status','assigned_to']
+        fields = ['first_name','email','password','status','assigned_to']
         widgets = {
             'first_name':forms.TextInput(attrs={'class':'form-control'}),
             'email':forms.EmailInput(attrs={'class':'form-control'}),
             'assigned_to':forms.TextInput(attrs={'class':'form-control'}),
-            
+            'password':forms.PasswordInput(attrs={'class':'form-control'}),
         }

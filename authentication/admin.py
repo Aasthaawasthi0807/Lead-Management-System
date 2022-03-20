@@ -4,4 +4,4 @@ from .models import Lead
 
 @admin.register(Lead)
 class LeadAdmin(admin.ModelAdmin):
-    list_display = ('id','first_name','status','assigned_to')
+    list_display = ('id','first_name','password','status','assigned_to')

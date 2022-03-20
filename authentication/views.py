@@ -83,8 +83,8 @@ def add_show(request):
                 em = fm.cleaned_data['email']
                 am = fm.cleaned_data['assigned_to']
                 sm = fm.cleaned_data['status']
-                
-                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm)
+                pw = fm.cleaned_data['password']
+                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm,password=pw)
                 reg.save()
                 fm = LeadRegistration()
         else:
@@ -118,3 +118,9 @@ def update_data(request, id):
         pi = Lead.objects.get(pk=id)
         fm = LeadRegistration(instance=pi)
     return render(request, 'authentication/updatelead.html' , {'form':fm})
+
+
+#Lead login function
+def lead_login(request):
+    fm = AuthenticationForm()
+    return render(request,'authentication/login1.html',{'form':fm})
