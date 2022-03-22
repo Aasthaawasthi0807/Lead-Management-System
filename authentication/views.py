@@ -83,8 +83,8 @@ def add_show(request):
                 em = fm.cleaned_data['email']
                 am = fm.cleaned_data['assigned_to']
                 sm = fm.cleaned_data['status']
-                pw = fm.cleaned_data['password']
-                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm,password=pw)
+                #pw = fm.cleaned_data['password']
+                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm)
                 reg.save()
                 fm = LeadRegistration()
         else:
