@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from django.db import models
 
 
@@ -19,4 +20,14 @@ class Lead(models.Model):
     status = models.CharField(max_length=100, choices=STATUS_CHOICES,default=False)
     assigned_to = models.CharField(max_length=30,default='')
     password =  models.CharField(max_length=20, default='')
+
+
+class Remark(models.Model):
+    id = models.IntegerField(primary_key=True,editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    remark = models.TextField(max_length=150)
+    lead_id=models.ForeignKey(Lead,on_delete=models.CASCADE,default=NULL)
+    
+
+
     
