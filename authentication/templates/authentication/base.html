@@ -12,7 +12,7 @@
         
         <img src="https://s3-us-west-2.amazonaws.com/cbi-image-service-prd/modified/4b932533-f39d-4037-a4eb-6ace79f652e3.png" class="logo" width="10%" height="5%">
         
-        <h3> Welcome {{name}}</h3>
+        <h3> Good Morning {{name}}</h3>
         {% if messages %}
          {% for message in messages %}
           <small {% if message.tags %} class="{{message.tags}}" {% endif%}>{{message}}</small>
@@ -20,10 +20,11 @@
         {%endif%}
         <a href="{%url 'changepass' %}">Change Password</a>
         <a href="{%url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">View Profile</a>
         
         
         <div class="container mt-5">
-            <h2 class="text-center alert alert-danger">Lead Management Platform Staff Panel</h2>
+            <h2 class="text-center alert alert-primary">Below you will find the list of leads assigned to you</h2>
             {% block content %}
             {% endblock content %}
         </div>

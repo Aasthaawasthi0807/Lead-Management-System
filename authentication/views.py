@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm , PasswordChangeForm
 from django.contrib.auth import authenticate, login,logout,update_session_auth_hash
 from .forms import LeadRegistration
-from .models import Lead
+
+from .models import Lead , Remark
 
 #Home view Function
 def home(request):
@@ -65,13 +66,7 @@ def user_change_pass(request):
 
 
 
-"""
-#Base
-def user_profile(request):
-    if request.user.is_authenticated:
-      return render(request , 'authentication/base.html' ,{'name':request.user})
-    else:
-        return HttpResponseRedirect('/login/')"""
+
 
 #This function will Add new Lead and Show all leads
 def add_show(request):
@@ -120,3 +115,31 @@ def update_data(request, id):
     return render(request, 'authentication/updatelead.html' , {'form':fm})
 
 
+"""
+#Base
+def user_profile(request):
+    if request.user.is_authenticated:
+      return render(request , 'authentication/base.html' ,{'name':request.user})
+    else:
+        return HttpResponseRedirect('/login/')"""
+
+def user_profile(request):
+    if request.user.is_authenticated:
+        hot_no = Lead.objects.filter(status='Hot').count()
+        hot_no = int(hot_no)
+        print('Hot leads are',hot_no)
+
+        med_no = Lead.objects.filter(status='Med').count()
+        med_no = int(med_no)
+        print('Med leads are',med_no)
+
+        grey_no = Lead.objects.filter(status='Grey').count()
+        grey_no = int(grey_no)
+        print('Grey leads are',grey_no)
+
+        labels= ['Hot','Grey','Med']
+        data =[hot_no,med_no,grey_no]
+        context = {'status_list':labels ,'number_list':data}
+        return render(request,'authentication/profile.html',context)
+    else:
+        return HttpResponseRedirect('/login/')
