@@ -78,8 +78,9 @@ def add_show(request):
                 em = fm.cleaned_data['email']
                 am = fm.cleaned_data['assigned_to']
                 sm = fm.cleaned_data['status']
-                #pw = fm.cleaned_data['password']
-                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm)
+                pn = fm.cleaned_data['phone_number']
+                pb = fm.cleaned_data['public']
+                reg = Lead(first_name = nm, email=em,assigned_to=am,status=sm,phone_number=pn,public=pb)
                 reg.save()
                 fm = LeadRegistration()
         else:
@@ -143,3 +144,5 @@ def user_profile(request):
         return render(request,'authentication/profile.html',context)
     else:
         return HttpResponseRedirect('/login/')
+
+

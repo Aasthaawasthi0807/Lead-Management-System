@@ -4,7 +4,7 @@ from .models import Lead, Remark
 
 @admin.register(Lead)
 class LeadAdmin(admin.ModelAdmin):
-    list_display = ('id','first_name','email','status','assigned_to')
+    list_display = ('id','first_name','email','status','assigned_to','public')
     list_per_page = 10
     search_fields = ('assigned_to',)
     list_filter = ('status',)

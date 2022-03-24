@@ -19,8 +19,9 @@ class Lead(models.Model):
     phone_number = models.CharField( max_length=17, blank=True) 
     status = models.CharField(max_length=100, choices=STATUS_CHOICES,default=False)
     assigned_to = models.CharField(max_length=30,default='')
+    public = models.BooleanField(default=True)
     #password =  models.CharField(max_length=20, default='')
-
+    #add_remark = models.BooleanField(default=NULL)
 
 class Remark(models.Model):
     id = models.IntegerField(primary_key=True,editable=False)
